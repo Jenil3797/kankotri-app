@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="gu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kankotri Customizer Pro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Gujarati:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <header>
+            <h1>Kankotri Customizer</h1>
+            <button id="admin-toggle" class="btn-secondary">⚙️ Admin Settings</button>
+        </header>
+
+        <!-- ADMIN SECTION -->
+        <section id="admin-section" class="hidden card">
+            <h2>Admin Configuration</h2>
+            <p class="note">Note: PDF coordinates (0,0) start at the <strong>bottom-left</strong> corner of the page.</p>
+            <div class="grid-2">
+                <div>
+                    <label>X Coordinate:</label>
+                    <input type="number" id="pos-x" value="250">
+                </div>
+                <div>
+                    <label>Y Coordinate (from bottom):</label>
+                    <input type="number" id="pos-y" value="400">
+                </div>
+                <div>
+                    <label>Font Size:</label>
+                    <input type="number" id="font-size" value="24">
+                </div>
+                <div>
+                    <label>Upload Custom Font (.ttf):</label>
+                    <input type="file" id="custom-font-upload" accept=".ttf">
+                    <small>Overrides default Noto Serif Gujarati.</small>
+                </div>
+            </div>
+        </section>
+
+        <!-- 1. UPLOAD SECTION -->
+        <section class="card">
+            <h2>1. Upload Base PDF Templates</h2>
+            <input type="file" id="template-upload" multiple accept="application/pdf">
+            <div id="uploaded-files-list"></div>
+        </section>
+
+        <!-- 2. GUEST CONFIGURATION -->
+        <section class="card">
+            <h2>2. Guest Details</h2>
+            <div class="grid-2">
+                <div>
+                    <label>English Name (Phonetic):</label>
+                    <input type="text" id="eng-name" placeholder="e.g., Rameshbhai" autocomplete="off">
+                </div>
+                <div>
+                    <label>Gujarati Name (Editable):</label>
+                    <input type="text" id="guj-name" placeholder="રમેશભાઈ">
+                </div>
+                <div>
+                    <label>WhatsApp Number:</label>
+                    <div class="phone-input">
+                        <span>+91</span>
+                        <input type="text" id="phone-number" placeholder="9876543210" maxlength="10">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. FILE SELECTION -->
+        <section class="card">
+            <h2>3. Select Files for this Guest</h2>
+            <p class="note">Select the files to send. Choose exactly <strong>one</strong> main file to stamp the name on.</p>
+            <div id="guest-file-selection">
+                <em>Upload templates first to see options here.</em>
+            </div>
+        </section>
+
+        <!-- 4. ACTION -->
+        <section class="action-section">
+            <button id="generate-btn" class="btn-primary" disabled>Generate & Send via WhatsApp</button>
+        </section>
+    </div>
+
+    <!-- External Libraries -->
+    <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+    <script src="https://unpkg.com/@pdf-lib/fontkit@0.0.4/dist/fontkit.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@indic-transliteration/sanscript@1.2.0/sanscript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    
+    <script src="app.js"></script>
+</body>
+</html>
